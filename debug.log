@@ -1,0 +1,6 @@
+[1218/232747.338:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1220/191906.101:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1228/122717.730:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[0103/081614.983:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[0105/103633.032:ERROR:process_reader_win.cc(151)] SuspendThread: Acceso denegado. (0x5)
+[0105/103633.042:ERROR:exception_snapshot_win.cc(99)] thread ID 8296 not found in process
