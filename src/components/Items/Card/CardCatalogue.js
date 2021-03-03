@@ -9,15 +9,17 @@ export default function CardCalogue({ data }) {
           <div className="card" style={{ width: "15rem", margin: "0px",padding: "0px", lineHeight:" 0px"}}>
             <img
               className="card-img-top"
-              src={require("assets/img/blurred-image-1.jpg")}
+              src={producto.img}
               alt="producto"
             ></img>
             <div className="" style={{ paddingLeft: "20px",paddingRight: "20px",  lineHeight:" 0px"}}>
-              <h5 className="card-title" style={{paddingTop: "10px"}}>{producto.nombre}</h5>
-              <p style={{lineHeight:"20px"}}>{producto.descripcion}</p>
+              <h5 className="card-title" style={{paddingTop: "10px"}}>{producto.Nombre}</h5>
+              <p style={{lineHeight:"20px"}}>Pidelo a tu domicilio</p>
             </div>
             <ul className="list-group list-group-flush">
-              <li className="list-group-item">${producto.precio}</li>
+              <li className="list-group-item">Menudeo {producto.Precio_Venta}</li>
+              <li className="list-group-item">Mayoreo {producto.Precio_Mayoreo}</li>
+
             </ul>
             <div className="card-body">
               <a href="/#" class="card-link">

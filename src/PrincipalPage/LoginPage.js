@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState}from "react";
 import back from "assets/img/WEB.png";
 import avatar from "assets/img/reactlogo.png";
 
@@ -20,10 +20,27 @@ import {
 
 // core components
 import Navbar from "../components/Navbars/IndexNavbar.js";
+import firebase from "firebase";
+
+function defaulvalue() {
+  return { email: "", password: "" };
+}
 
 function LoginPage() {
   const [firstFocus, setFirstFocus] = React.useState(false);
   const [lastFocus, setLastFocus] = React.useState(false);
+  const [Formdata, setFormdata] = useState(defaulvalue());
+  const onSutmit = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(Formdata.email, Formdata.password)
+      .then((response) => {        alert(" enviado! 👍");
+    })
+      .catch(() => { alert("error");});
+  }
+  const onChange=(e, type)=>{
+    setFormdata({...Formdata,[type]:(e) => e.preventDefault.text})
+  }
   React.useEffect(() => {
     document.body.classList.add("login-page");
     document.body.classList.add("sidebar-collapse");
@@ -55,7 +72,7 @@ function LoginPage() {
                       <img
                         alt="..."
                         src={avatar}
-                        width="170px" 
+                        width="170px"
                         height="150px"
                       ></img>
                     </div>
@@ -73,10 +90,12 @@ function LoginPage() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="USUARIO"
+                        placeholder="CORREO DE USUARIO"
                         type="text"
                         onFocus={() => setFirstFocus(true)}
                         onBlur={() => setFirstFocus(false)}
+                        onChange={(e)=>onChange(e,"email")}
+
                       ></Input>
                     </InputGroup>
                     <InputGroup
@@ -87,29 +106,25 @@ function LoginPage() {
                     >
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="now-ui-icons text_caps-small"></i>
-                        </InputGroupText>
+                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
                         placeholder="CONTRASEÑA"
-                        type="text"
+                        type="password"
                         onFocus={() => setLastFocus(true)}
                         onBlur={() => setLastFocus(false)}
+                        onChange={(e)=>onChange(e,"password")}
                       ></Input>
                     </InputGroup>
                   </CardBody>
                   <CardFooter className="text-center">
-                    <Button
-                      block
-                      className="btn-round"
-                      color="info"
-                      href="/admin/dashboard"
-                      onClick={(e) => e.preventDefault()}
-                      size="xs"
-                    >
-                     INICIAR SESION
-                    </Button>
-                     <div className="pull-right">
+                  <input
+                            type="submit"
+                            className="btn btn-info"
+                            value="Enviar"
+                            onClick={onSutmit}
+                          ></input>
+                    <div className="pull-right">
                       <h6>
                         <a
                           className="link"

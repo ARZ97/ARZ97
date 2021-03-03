@@ -3,14 +3,14 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "components/Items/Card/Card.js";
 import CardHeader from "components/Items/Card/CardHeader.js";
-import CardFooter from "components/Items/Card/CardFooter.js";
-import Button from "components/Items/CustomButtons/Button.js";
-import CardBody from "components/Items/Card/CardBody.js";
+  import CardBody from "components/Items/Card/CardBody.js";
 import GridItem from "components/Items/Grid/GridItem.js";
-import CustomInput from "components/Items/CustomInput/CustomInput.js";
+import {Row, Col} from "reactstrap";
 import Map from "components/Maps/Map.js";
 import DarkFooter from "components/Footers/DarkFooter.js";
 import GridContainer from "components/Items/Grid/GridContainer.js";
+import emailjs from "emailjs-com";
+
 const styles = {
   cardCategoryWhite: {
     color: "rgba(255,255,255,.62)",
@@ -47,7 +47,27 @@ export default function Contact() {
       document.body.classList.remove("sidebar-collapse");
     };
   }, []);
+  function sendEmail(e) {
+    e.preventDefault();
 
+    emailjs
+      .sendForm(
+        "EmplaoService",
+        "template_iwrj79q",
+        e.target,
+        "user_Ps7cjMlQH2YGa4kMNgZBV"
+      )
+
+      .then(
+        (result) => {
+          alert("Mensaje enviado! 👍");
+        },
+        (error) => {
+          alert(error.message);
+        }
+      );
+    e.target.reset();
+  }
   return (
     <>
       <NavbarColor />
@@ -57,6 +77,7 @@ export default function Contact() {
             <GridContainer className="embed-responsive">
               <GridItem xs={12} sm={12} md={12}>
                 <Card>
+ 
                   <CardHeader color="warning">
                     <h4 className={classes.cardTitleWhite}>Contactanos</h4>
                     <p className={classes.cardCategoryWhite}>
@@ -64,66 +85,90 @@ export default function Contact() {
                     </p>
                   </CardHeader>
                   <CardBody>
-                    <GridContainer>
-                      <GridItem xs={12} sm={12} md={5}>
-                        <CustomInput
-                          style={{ color: "#000000" }}
-                          labelText="Correo de contacto"
-                          id="email-disable"
-                          formControlProps={{
-                            fullWidth: true,
-                          }}
-                        />
-                      </GridItem>
-                      <GridItem xs={12} sm={12} md={5}>
-                        <CustomInput
-                          labelText="Telefono"
-                          id="telfono"
-                          formControlProps={{
-                            fullWidth: true,
-                          }}
-                        />
-                      </GridItem>
-                      <GridItem xs={12} sm={12} md={5}>
-                        <CustomInput
-                          labelText="Nombre"
-                          id="username"
-                          formControlProps={{
-                            fullWidth: true,
-                          }}
-                        />
-                      </GridItem>
-                      <GridItem xs={12} sm={12} md={6}>
-                        <CustomInput
-                          labelText="Motivo de contacto ( Cotizacion, Otro)"
-                          id="Type-error"
-                          formControlProps={{
-                            fullWidth: true,
-                          }}
-                        />
-                      </GridItem>
-                    </GridContainer>
+                  <form onSubmit={sendEmail}>
+                      <Row lg="5">
+                        <Col lg="12" sm="12" form-group="mx-auto">
+                          <label>
+                            <strong>Nombre:</strong>
+                          </label>
+                          <input
+                            type="text"
+                            autoFocus
+                            className="form-control"
+                            required
+                            placeholder="nombre"
+                            name="nombre"
+                          />
+                          <br />
+                        </Col>
+                        <Col lg="12" sm="12" form-group="mx-auto">
+                          <label>
+                            <strong>Motivo:</strong>
+                          </label>
+                          <input
+                            type="text"
+                            autoFocus
+                            className="form-control"
+                            required
+                            placeholder="Motivo"
+                            name="motivo"
+                          />
+                          <br />
+                        </Col>
+                        <Col lg="12" sm="12" form-group="mx-auto">
+                          <label>
+                            <strong>Correo:</strong>
+                          </label>
+                          <input
+                            type="email"
+                            className="form-control"
+                            required
+                            placeholder="correo"
+                            name="correoContact"
+                          />
+                          <br />
+                        </Col>
+                        <Col lg="12" sm="12" form-group="mx-auto">
+                          <label>
+                            <strong>Telefono:</strong>
+                          </label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            required
+                            placeholder="Telefono"
+                            name="telefono"
+                          />
+                          <br />
+                        </Col>
 
-                    <GridContainer>
-                      <GridItem xs={12} sm={12} md={12}>
-                        <CustomInput
-                          labelText="Mensaje"
-                          id="mensaje"
-                          formControlProps={{
-                            fullWidth: true,
-                          }}
-                          inputProps={{
-                            multiline: true,
-                            rows: 5,
-                          }}
-                        />
-                      </GridItem>
-                    </GridContainer>
+                        <Col lg="12" sm="12" form-group="mx-auto">
+                          <label>
+                            <strong>Mensaje:</strong>
+                          </label>
+                          <textarea
+                            className="form-control"
+                            id=""
+                            cols="30"
+                            rows="8"
+                            required
+                            placeholder="Escribe aqui tu mensaje"
+                            name="mensaje"
+                          ></textarea>
+                          <br />
+                        </Col>
+                        <Col lg="12" sm="12" form-group="mx-auto">
+                          <input
+                            type="submit"
+                            className="btn btn-info"
+                            value="Enviar"
+                          ></input>
+                        </Col>
+                      </Row>
+                    </form>
                   </CardBody>
-                  <CardFooter>
-                    <Button color="warning">Enviar</Button>
-                  </CardFooter>
-                </Card>
+                  
+                 </Card>
               </GridItem>
             </GridContainer>
           </div>

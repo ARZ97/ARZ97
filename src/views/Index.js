@@ -34,11 +34,12 @@ function Index() {
         <IndexHeader />
         <div className="main">
           <ImagesPromo />
-          <Masvendido />
-          <VideosCom />
           <div className="content-fluid responsive">
           <Carousel />
           </div>
+          <Masvendido />
+          <VideosCom />
+          
         </div>
         <DarkFooter />
       </div>
