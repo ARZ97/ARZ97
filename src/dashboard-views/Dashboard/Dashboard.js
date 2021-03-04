@@ -1,12 +1,15 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "components/Items/Card/Card.js";
 import CardHeader from "components/Items/Card/CardHeader.js";
 import CardBody from "components/Items/Card/CardBody.js";
 import GridItem from "components/Items/Grid/GridItem.js";
- import GridContainer from "components/Items/Grid/GridContainer.js";
+import GridContainer from "components/Items/Grid/GridContainer.js";
 import Table from "components/Items/Table/Table.js";
   import TableMns from "components/Items/Table/TableMns.js";
+import TableBot from "components/Items/Table/TableDAProd.js";
+import TableMns from "components/Items/Table/TableMns.js";
+import {inventarioData} from "data/inventarioData"
 
 const styles = {
   cardCategoryWhite: {
@@ -30,7 +33,6 @@ const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
   const classes = useStyles();
-
   return (
     <>
       <GridContainer>
@@ -48,16 +50,9 @@ export default function Dashboard() {
                   "Descripcion", 
                   "Provedor",
                   "Stock",
-                 ]}
-                tableData={[
-                  ["Dakota Rice", "Niger", "Oud-Turnhout", "$36,738",],
-                  ["Minerva Hooper", "Curaçao", "Sinaai-Waas", "$23,789"],
-                  ["Sage Rodriguez", "Netherlands", "Baileux", "$56,142"],
-                  ["Philip Chaney", "Korea, South", "Overland Park", "$38,735"],
-                  ["Doris Greene", "Malawi", "Feldkirchen in Kärnten","$60.65"],
-                  ["Mason Porter", "Chile", "Gloucester", "$78,615"],
-                  
+                  "Editar",
                 ]}
+                tableData={inventarioData}
                 
               />
               

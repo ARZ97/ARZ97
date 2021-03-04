@@ -10,6 +10,7 @@ import CustomInput from "components/Items/CustomInput/CustomInput.js";
 import GridContainer from "components/Items/Grid/GridContainer.js";
 import Table from "components/Items/Table/TableProducts.js";
 import { Container } from "reactstrap";
+import {proveedores} from "data/proveedores"
 
 const styles = {
   cardCategoryWhite: {
@@ -125,38 +126,7 @@ export default function Providers() {
                   "Email",
                   "Direccion",
                 ]}
-                tableData={[
-                  ["Dakota Rice", "Niger", "Oud-Turnhout", "$36,738", "Niger"],
-                  [
-                    "Minerva Hooper",
-                    "Curaçao",
-                    "Sinaai-Waas",
-                    "$23,789",
-                    "Niger",
-                  ],
-                  [
-                    "Sage Rodriguez",
-                    "Netherlands",
-                    "Baileux",
-                    "$56,142",
-                    "Niger",
-                  ],
-                  [
-                    "Philip Chaney",
-                    "Korea, South",
-                    "Overland Park",
-                    "$38,735",
-                    "Niger",
-                  ],
-                  [
-                    "Doris Greene",
-                    "Malawi",
-                    "Feldkirchen in Kärnten",
-                    "$63,542",
-                    "Niger",
-                  ],
-                  ["Mason Porter", "Chile", "Gloucester", "$78,615", "Niger"],
-                ]}
+                tableData={proveedores}
               />
             </CardBody>
           </Card>
