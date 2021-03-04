@@ -1,6 +1,9 @@
 import React,{useState}from "react";
 import back from "assets/img/WEB.png";
 import avatar from "assets/img/reactlogo.png";
+  import { Switch, Route, BrowserRouter,Redirect, Link} from "react-router-dom";
+import Admin from "./../layouts/Admin.js";
+import {NavLink} from "reactstrap"
 
 // reactstrap components
 import {
@@ -10,37 +13,19 @@ import {
   CardBody,
   CardFooter,
   Form,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
+ 
   Container,
   Col,
 } from "reactstrap";
 
 // core components
 import Navbar from "../components/Navbars/IndexNavbar.js";
-import firebase from "firebase";
-
-function defaulvalue() {
-  return { email: "", password: "" };
-}
+  
 
 function LoginPage() {
-  const [firstFocus, setFirstFocus] = React.useState(false);
-  const [lastFocus, setLastFocus] = React.useState(false);
-  const [Formdata, setFormdata] = useState(defaulvalue());
-  const onSutmit = () => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(Formdata.email, Formdata.password)
-      .then((response) => {        alert(" enviado! 👍");
-    })
-      .catch(() => { alert("error");});
-  }
-  const onChange=(e, type)=>{
-    setFormdata({...Formdata,[type]:(e) => e.preventDefault.text})
-  }
+  const [email, setEmail] =useState("");
+  const [password, setPassword] =useState("");
+
   React.useEffect(() => {
     document.body.classList.add("login-page");
     document.body.classList.add("sidebar-collapse");
@@ -52,7 +37,15 @@ function LoginPage() {
       document.body.classList.remove("sidebar-collapse");
     };
   }, []);
-  return (
+ 
+  const submit = ()=>{
+  if(password=="administrador2020"){
+             return (    <NavLink to="/admin" tag={Link}> </NavLink>        
+             );
+  }return null;
+  };
+
+return (
     <>
       <Navbar />
       <div className="page-header clear-filter" filter-color="blue">
@@ -66,8 +59,7 @@ function LoginPage() {
           <Container>
             <Col className="ml-auto mr-auto" md="4">
               <Card className="card-login card-plain">
-                <Form action="" className="form" method="">
-                  <CardHeader className="text-center">
+                    <CardHeader className="text-center">
                     <div className="container">
                       <img
                         alt="..."
@@ -78,66 +70,47 @@ function LoginPage() {
                     </div>
                   </CardHeader>
                   <CardBody>
-                    <InputGroup
-                      className={
-                        "no-border input-lg" +
-                        (firstFocus ? " input-group-focus" : "")
-                      }
-                    >
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="now-ui-icons users_circle-08"></i>
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        placeholder="CORREO DE USUARIO"
-                        type="text"
-                        onFocus={() => setFirstFocus(true)}
-                        onBlur={() => setFirstFocus(false)}
-                        onChange={(e)=>onChange(e,"email")}
+                   
+                        <label>
+                            <strong>Correo:</strong>
+                          </label>
+                          <input
+                            type="email"
+                          id="email"
+                          className="form-control"
 
-                      ></Input>
-                    </InputGroup>
-                    <InputGroup
-                      className={
-                        "no-border input-lg" +
-                        (lastFocus ? " input-group-focus" : "")
-                      }
-                    >
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                         </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        placeholder="CONTRASEÑA"
-                        type="password"
-                        onFocus={() => setLastFocus(true)}
-                        onBlur={() => setLastFocus(false)}
-                        onChange={(e)=>onChange(e,"password")}
-                      ></Input>
-                    </InputGroup>
+                            placeholder="Correo"
+                            name="email"
+                            onChange={(e)=>setEmail(e.target.value)}
+                          />
+                      <br/>
+                    
+                   
+                      <label>
+                            <strong>Contraseña:</strong>
+                          </label>
+                          <input
+                            type="password"
+                            autoFocus
+                            className="form-control"
+                            required
+                            placeholder="Contraseña"
+                            name="password"
+                            onChange={(e)=>setPassword(e.target.value)}
+
+                          />
+                   
                   </CardBody>
                   <CardFooter className="text-center">
-                  <input
-                            type="submit"
-                            className="btn btn-info"
-                            value="Enviar"
-                            onClick={onSutmit}
-                          ></input>
-                    <div className="pull-right">
-                      <h6>
-                        <a
-                          className="link"
-                          href="CONTACTO"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          AYUDA?
-                        </a>
-                      </h6>
-                    </div>
-                  </CardFooter>
-                </Form>
-              </Card>
+                   
+                  <NavLink to="/admin" tag={Link}> <button
+                              type="submit"
+
+                             className="btn btn-info"
+                            onClick={submit}
+                            > Iniciar Sesion</button> </NavLink>
+                   </CardFooter>
+                </Card>
             </Col>
           </Container>
         </div>

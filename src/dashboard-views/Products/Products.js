@@ -6,8 +6,9 @@ import CardBody from "components/Items/Card/CardBody.js";
 import GridItem from "components/Items/Grid/GridItem.js";
  import GridContainer from "components/Items/Grid/GridContainer.js";
 
+ 
 import TableProduct from "components/Items/Table/TableProducts.js";
-
+import{CustomInput,Button,CardFooter,} from "reactstrap"
  
 const styles = {
   cardCategoryWhite: {
@@ -31,9 +32,84 @@ const useStyles = makeStyles(styles);
 
 export default function Product() {
   const classes = useStyles();
+  const [showAdd,setShowAdd]=React.useState(false);
 
   return (
-    <>
+    <> <button                    
+             className="btn btn-info"
+
+    onClick={()=>setShowAdd(!showAdd)}
+    >Agregar</button>  
+    {showAdd? 
+      <GridItem xs={10} sm={10} md={10}  >
+      <Card >
+        <CardHeader color="info">
+          <h4 className={classes.cardTitleWhite}>Agregar Producto</h4>
+        </CardHeader>
+        <CardBody>
+          <GridContainer>
+            <GridItem xs={12} sm={12} md={5}>
+              <CustomInput
+                labelText="Nombre"
+                id="Nombre"
+                formControlProps={{
+                  fullWidth: false,
+                }}
+              />
+            </GridItem>
+            <GridItem xs={12} sm={12} md={5}>
+              <CustomInput
+                labelText="Categoria"
+                id="nombre"
+                formControlProps={{
+                  fullWidth: false,
+                }}
+              />
+            </GridItem>
+            <GridItem xs={12} sm={12} md={5}>
+              <CustomInput
+                labelText="stock"
+                id="stock"
+                formControlProps={{
+                  fullWidth: true,
+                }}
+              />
+            </GridItem>
+            <GridItem xs={12} sm={12} md={5}>
+              <CustomInput
+                labelText="precio"
+                id="email"
+                formControlProps={{
+                  fullWidth: true,
+                }}
+              />
+            </GridItem>
+            <GridItem xs={12} sm={12} md={5}>
+              <CustomInput
+                labelText="Mayoreo"
+                id="mayoreo"
+                formControlProps={{
+                  fullWidth: true,
+                }}
+              />
+            </GridItem>
+             <GridItem xs={12} sm={12} md={5}>
+              <CustomInput
+                labelText="Costo"
+                id="Costo"
+                formControlProps={{
+                  fullWidth: true,
+                }}
+              />
+            </GridItem>
+          </GridContainer>
+        </CardBody>
+        <CardFooter>
+          <Button color="info">Agregar</Button>
+        </CardFooter>
+      </Card>
+    </GridItem>
+     :null}
       <GridContainer>
         <GridItem xs={12} sm={12} md={12}>
           <Card>
@@ -66,8 +142,8 @@ export default function Product() {
             </CardBody>
           </Card>
         </GridItem>
-        <GridItem xs={12} sm={12} md={12}>
-          <Card>
+      {/*  <GridItem xs={12} sm={12} md={12}>
+         <Card>
             <CardHeader color="primary">
               <h4 className={classes.cardTitleWhite}>Administrar Promociones </h4>
             </CardHeader>
@@ -118,7 +194,7 @@ export default function Product() {
               
             </CardBody>
           </Card>
-        </GridItem>
+        </GridItem> */}
         <GridItem xs={6} sm={6} md={6}>
           <Card>
             <CardHeader color="primary">
@@ -129,7 +205,7 @@ export default function Product() {
             <CardBody>
               <TableProduct
                 tableHeaderColor="primary"
-                tableHead={["Nombre", "Promocion", "precio"]}
+                tableHead={["Nombre", "Inventario", "Ventas ", "Ganancia"]}
                 tableData={[
                   ["Dakota Rice", "Niger", "Oud-Turnhout"],
                   ["Minerva Hooper", "Curaçao", "Sinaai-Waas"],

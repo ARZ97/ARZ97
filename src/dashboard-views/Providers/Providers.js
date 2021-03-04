@@ -35,13 +35,14 @@ const useStyles = makeStyles(styles);
 export default function Providers() {
   const classes = useStyles();
   const [showAdd,setShowAdd]=React.useState(false);
-  const [showEdith]=React.useState(false);
+  const [showEdith,setShowEdith]=React.useState(false);
 
   return (
     <>
       <GridContainer>
       <Container>
-        <button 
+        <button                              className="btn btn-info"
+
         onClick={()=>setShowAdd(!showAdd)}
         >Agregar</button>
             {showAdd? 
@@ -105,67 +106,7 @@ export default function Providers() {
             </Card>
           </GridItem>
            :null}
-            {showEdith?
-            <GridItem xs={10} sm={10} md={10}  >
-              <Card >
-                <CardHeader color="success">
-                  <h4 className={classes.cardTitleWhite}>Editar provedor</h4>
-                </CardHeader>
-                <CardBody>
-                  <GridContainer>
-                    <GridItem xs={12} sm={12} md={5}>
-                      <CustomInput
-                        labelText="Empresa"
-                        id="empresa"
-                        formControlProps={{
-                          fullWidth: false,
-                        }}
-                      />
-                    </GridItem>
-                    <GridItem xs={12} sm={12} md={5}>
-                      <CustomInput
-                        labelText="Nombre"
-                        id="nombre"
-                        formControlProps={{
-                          fullWidth: false,
-                        }}
-                      />
-                    </GridItem>
-                    <GridItem xs={12} sm={12} md={5}>
-                      <CustomInput
-                        labelText="Telefono"
-                        id="telefono"
-                        formControlProps={{
-                          fullWidth: true,
-                        }}
-                      />
-                    </GridItem>
-                    <GridItem xs={12} sm={12} md={5}>
-                      <CustomInput
-                        labelText="Email"
-                        id="email"
-                        formControlProps={{
-                          fullWidth: true,
-                        }}
-                      />
-                    </GridItem>
-                    <GridItem xs={12} sm={12} md={5}>
-                      <CustomInput
-                        labelText="Direccion"
-                        id="Direccion"
-                        formControlProps={{
-                          fullWidth: true,
-                        }}
-                      />
-                    </GridItem>
-                  </GridContainer>
-                </CardBody>
-                <CardFooter>
-                  <Button color="success">Aceptar</Button>
-                </CardFooter>
-              </Card>
-            </GridItem>
-             :null}
+            
             </Container>
         <GridItem xs={12} sm={12} md={12}>
           <Card>

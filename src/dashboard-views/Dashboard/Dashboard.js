@@ -6,8 +6,7 @@ import CardBody from "components/Items/Card/CardBody.js";
 import GridItem from "components/Items/Grid/GridItem.js";
  import GridContainer from "components/Items/Grid/GridContainer.js";
 import Table from "components/Items/Table/Table.js";
-import TableBot from "components/Items/Table/TableDAProd.js";
- import TableMns from "components/Items/Table/TableMns.js";
+  import TableMns from "components/Items/Table/TableMns.js";
 
 const styles = {
   cardCategoryWhite: {
@@ -41,7 +40,7 @@ export default function Dashboard() {
               <h4 className={classes.cardTitleWhite}>Stock de Productos </h4>
             </CardHeader>
             <CardBody>
-              <TableBot
+              <Table
                
                 tableHeaderColor="success"
                 tableHead={[
@@ -49,8 +48,7 @@ export default function Dashboard() {
                   "Descripcion", 
                   "Provedor",
                   "Stock",
-                  "Editar",
-                ]}
+                 ]}
                 tableData={[
                   ["Dakota Rice", "Niger", "Oud-Turnhout", "$36,738",],
                   ["Minerva Hooper", "Curaçao", "Sinaai-Waas", "$23,789"],
@@ -76,6 +74,7 @@ export default function Dashboard() {
                 tableHeaderColor="info"
                 tableHead={[
                   "Nombre",
+                  "correo",
                   "Asunto",
                   "Mensaje",
                   "Telefono",
@@ -129,7 +128,7 @@ export default function Dashboard() {
             <CardBody>
               <Table
                 tableHeaderColor="warning"
-                tableHead={["Nombre", "Descripcion", "Provedor", "Stock"]}
+                tableHead={["Nombre", "Inventario", "Ventas ", "Ganancia"]}
                 tableData={[
                   ["Dakota Rice", "Niger", "Oud-Turnhout", "$36,738"],
                   ["Minerva Hooper", "Curaçao", "Sinaai-Waas", "$23,789"],
@@ -157,7 +156,7 @@ export default function Dashboard() {
             <CardBody>
               <Table
                 tableHeaderColor="danger"
-                tableHead={["Nombre", "Descripcion", "Provedor", "Stock"]}
+                tableHead={["Nombre", "Inventario", "Ventas ", "Ganancia"]}
                 tableData={[
                   ["Dakota Rice", "Niger", "Oud-Turnhout", "$36,738"],
                   ["Minerva Hooper", "Curaçao", "Sinaai-Waas", "$23,789"],
