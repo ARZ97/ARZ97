@@ -12,8 +12,7 @@ import styles from "../../../assets/jss/material-dashboard-react/components/tabl
 
  import Card from "components/Items/Card/Card.js";
 import CardHeader from "components/Items/Card/CardHeader.js";
-import CardFooter from "components/Items/Card/CardFooter.js";
-import Button from "components/Items/CustomButtons/Button.js";
+ 
 import CardBody from "components/Items/Card/CardBody.js";
 import GridItem from "components/Items/Grid/GridItem.js";
 import {Row, Col} from "reactstrap";
@@ -33,7 +32,8 @@ var v1 ,
   h4,
   h5 = null;
 export default function CustomTable(props ) {
-  const classes = useStyles();
+  const keyEdit = null;
+    const classes = useStyles();
   const [showContest, setContest] = React.useState(false);
   function valores(tableData, keyEdit) {
     var p = tableData[keyEdit];
@@ -50,7 +50,8 @@ h4=tableHead[3];
 h5=tableHead[4];
   }
   const { tableHead, tableData, tableHeaderColor } = props;
-  
+  const [dataTable, setData] = React.useState(tableData);
+
   function sendEmail(e) {
     e.preventDefault();
 
@@ -71,6 +72,12 @@ h5=tableHead[4];
         }
       );
     e.target.reset();
+  }
+  function eliminar(keyEdit) {
+    var p = tableData[keyEdit];
+
+    setData((i) => tableData.filter((i, index) => index !== keyEdit));
+    console.log(dataTable);
   }
   return (<>
     <div className={classes.tableResponsive}>
@@ -103,7 +110,7 @@ h5=tableHead[4];
           </TableHead>
         ) : null}
         <TableBody>
-          {tableData.map((prop, key) => {
+          {dataTable.map((prop, key) => {
             return (
               <TableRow key={key} className={classes.tableBodyRow}>
                 {prop.map((prop, key) => {
@@ -117,7 +124,9 @@ h5=tableHead[4];
                           setContest(!showContest);
                           valores(tableData, key);
                         }}class="btn btn-success btn-xs">Contestar</button>}</TableCell>
-             <TableCell  >{ <button type="button" class="btn btn-danger btn-xs">Eliminar</button>}</TableCell>
+             <TableCell  >{ <button type="button" class="btn btn-danger btn-xs" onClick={() => {
+                          eliminar(key);
+                        }}>Eliminar</button>}</TableCell>
 
               </TableRow>
             );
@@ -130,7 +139,7 @@ h5=tableHead[4];
           <Card>
             <CardHeader color="info">
               <h4 className={classes.cardTitleWhite}>               
-                   <strong>Envio de correo para{v1}</strong>
+                   <strong>Envio de correo para {v1}</strong>
  </h4>
             </CardHeader>
             <CardBody>
@@ -156,14 +165,14 @@ h5=tableHead[4];
                       
                         <Col lg="12" sm="12" form-group="mx-auto">
                           <label>
-                            <strong>Correo:</strong>
+                            <strong>Producto de interes:</strong>
                           </label>
                           <input
-                            type="email"
+                            type="text"
                             className="form-control"
                             required
                             defaultValue={v2}
-                            placeholder="correo"
+                            placeholder="producto"
                             name="correoContact"
                           />
                           <br />
